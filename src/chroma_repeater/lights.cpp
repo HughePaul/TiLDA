@@ -3,7 +3,7 @@
 int pins[] = {PIN_LED_RIGHT, PIN_LED_LEFT, PIN_LED_BLUE, PIN_LED_GREEN, PIN_LED_RED};
 
 // Calibration for LED colour issues
-const float calibration[] = {1, 1, 1};
+const float calibration[] = {0.8, 1, 1};
 
 Lights::Lights() {
   for (int i = 0; i < 6; i++) {
@@ -43,14 +43,4 @@ void led_cycle(Lights *lights, int light, int time) {
     lights->set(light, red, green, blue);
     delay(1);
   }
-}
-
-void led_cycle_nonblocking(Lights *lights, int light) {
-  unsigned char red = 0, green = 0, blue = 0;
-  unsigned char brightness = 200;
-  float tick = millis() / 500;
-  red = (unsigned char)(abs(sin(tick)) * brightness);
-  green = (unsigned char)(abs(sin(tick + PI / 4)) * brightness);
-  blue = (unsigned char)(abs(sin(tick + PI / 2)) * brightness);
-  lights->set(light, red, green, blue);
 }
