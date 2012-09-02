@@ -38,9 +38,9 @@ void led_cycle(Lights *lights, int light, int time) {
   unsigned char brightness = 128;
   float step = (2 * PI) / time;
   for (float i = 0; i < 2 * PI; i += step) {
-    red = (unsigned char)(abs(sin(i)) * brightness);
-    green = (unsigned char)(abs(sin(i + PI / 4)) * brightness);
-    blue = (unsigned char)(abs(sin(i + PI / 2)) * brightness);
+    red =   (unsigned char)( brightness + brightness * sin(i) );
+    green = (unsigned char)( brightness + brightness * sin(i + PI * 2 / 3) );
+    blue =  (unsigned char)( brightness + brightness * sin(i + PI * 4 / 3) );
     if(led_stop) {
       led_stop = false;
       break;
